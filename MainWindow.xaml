@@ -1,0 +1,78 @@
+﻿<Window x:Class="RoyalFamilyTree.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Royal Family Tree Visualization" Height="700" Width="1200"
+        WindowStartupLocation="CenterScreen">
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="300"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+
+		<!-- Left Panel - Controls -->
+		<Border Grid.Column="0" Background="#F5F5F5" BorderBrush="#CCCCCC" BorderThickness="0,0,1,0" Padding="10">
+			<StackPanel>
+				<TextBlock Text="Royal Family Tree Manager" FontSize="16" FontWeight="Bold" Margin="0,0,0,10" TextWrapping="Wrap"/>
+
+				<!-- Search Section -->
+				<GroupBox Header="Search Family Member" Margin="0,0,0,10">
+					<StackPanel>
+						<TextBox x:Name="txtSearch" Margin="0,5,0,5" Height="25"/>
+						<Button x:Name="btnSearchBFS" Content="Search (BFS)" Click="BtnSearchBFS_Click" Margin="0,2" Height="30" Background="#4CAF50" Foreground="White" FontWeight="Bold"/>
+						<Button x:Name="btnSearchDFS" Content="Search (DFS)" Click="BtnSearchDFS_Click" Margin="0,2" Height="30" Background="#2196F3" Foreground="White" FontWeight="Bold"/>
+						<TextBlock x:Name="txtSearchResult" Margin="0,5,0,0" TextWrapping="Wrap" Foreground="#333333"/>
+					</StackPanel>
+				</GroupBox>
+
+				<!-- Add Member Section -->
+				<GroupBox Header="Add Family Member" Margin="0,0,0,10">
+					<StackPanel>
+						<TextBlock Text="Parent Name:" Margin="0,5,0,2"/>
+						<TextBox x:Name="txtParentName" Height="25" Margin="0,0,0,5"/>
+
+						<TextBlock Text="Child Name:" Margin="0,5,0,2"/>
+						<TextBox x:Name="txtChildName" Height="25" Margin="0,0,0,5"/>
+
+						<TextBlock Text="Date of Birth:" Margin="0,5,0,2"/>
+						<DatePicker x:Name="dpDateOfBirth" Margin="0,0,0,5"/>
+
+						<CheckBox x:Name="chkIsAlive" Content="Is Alive" IsChecked="True" Margin="0,5,0,5"/>
+
+						<TextBlock Text="Title (optional):" Margin="0,5,0,2"/>
+						<TextBox x:Name="txtTitle" Height="25" Margin="0,0,0,5"/>
+
+						<Button x:Name="btnAddMember" Content="Add Member" Click="BtnAddMember_Click" Margin="0,5" Height="35" Background="#FF9800" Foreground="White" FontWeight="Bold"/>
+					</StackPanel>
+				</GroupBox>
+
+				<!-- Display Options -->
+				<GroupBox Header="Display Options">
+					<StackPanel>
+						<Button x:Name="btnShowSuccession" Content="Show Line of Succession" Click="BtnShowSuccession_Click" Margin="0,2" Height="30" Background="#9C27B0" Foreground="White"/>
+						<Button x:Name="btnRefreshTree" Content="Refresh Tree View" Click="BtnRefreshTree_Click" Margin="0,2" Height="30" Background="#607D8B" Foreground="White"/>
+					</StackPanel>
+				</GroupBox>
+			</StackPanel>
+		</Border>
+
+		<!-- Right Panel - Tree Display -->
+		<Grid Grid.Column="1">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="*"/>
+			</Grid.RowDefinitions>
+
+			<!-- Header -->
+			<Border Grid.Row="0" Background="#3F51B5" Padding="15">
+				<TextBlock Text="House of Windsor Family Tree" FontSize="20" FontWeight="Bold" Foreground="White"/>
+			</Border>
+
+			<!-- Tree Display Area -->
+			<ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+				<Canvas x:Name="treeCanvas" Background="White" Margin="20">
+					<!-- Tree will be drawn here -->
+				</Canvas>
+			</ScrollViewer>
+		</Grid>
+	</Grid>
+</Window>
